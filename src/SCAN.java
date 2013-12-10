@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class SCAN {
@@ -16,9 +17,6 @@ public class SCAN {
 	}
 
 	public void  split(int current){
-		DiskRequest shortestdr = null;
-		int shortest_distance = 9999;
-
 		for (int i=0;i<requests.size();i++) {
 			DiskRequest dr = requests.get(i);
 			if (dr.track >= current) 
@@ -31,6 +29,7 @@ public class SCAN {
 	
 	public void sort(ArrayList<DiskRequest> list) {
 		ArrayList<DiskRequest>finalList = new ArrayList<DiskRequest>();
+		finalList = list;
 		for (int i=0;i<list.size();i++)
 			for(int x=1;x<list.size()-i;x++) {
 			 if (list.get(x-1).track > list.get(x).track) {
@@ -41,9 +40,6 @@ public class SCAN {
 			}
 	}
 	
-	
-	
-
 	public double doSomething(DiskRequest start) {
 		int current = start.track;
 		double totalTime = 0;
@@ -65,7 +61,7 @@ public class SCAN {
 				current = dr.track;
 				start.track = dr.track;
 				if (verbose == true)
-					System.out.println("Current track: "+current);
+					System.out.println("Current track: " + current);
 			}
 		 
 		 if (verbose) 
@@ -80,7 +76,7 @@ public class SCAN {
 				current = dr.track;
 				start.track = dr.track;
 				if (verbose == true)
-					System.out.println("Current track: "+current);
+					System.out.println("Current track: " + current);
 			}
 		return totalTime;
 	}

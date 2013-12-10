@@ -5,19 +5,17 @@ import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 
+import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
+
 
 public class FileProcessing {
 	
 	private File file;
+	private String summary = "";
 	JFileChooser chooser = new JFileChooser();
 
 	ArrayList<DiskRequest> requests = new ArrayList<DiskRequest>();
 	int timeLargest = 0;
-
-	//String filename;
-//	public FileProcessing(String _filename) {
-//		filename = _filename;
-//	}
 
 	ArrayList<DiskRequest> getSecondsWorthofData(int second) {
 		ArrayList<DiskRequest> retVal =  new ArrayList<DiskRequest>();
@@ -29,7 +27,7 @@ public class FileProcessing {
 		}
 		return retVal;
 	}
-
+	
 	public void load() {
 		timeLargest = 0;
 
@@ -37,7 +35,6 @@ public class FileProcessing {
 			BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
 			String str;
 			while ((str = br.readLine()) != null) {
-				System.out.println(str + "\n");
 				DiskRequest dr = new DiskRequest(str);
 				int temp = (int)dr.timeStamp;
 				if (temp > timeLargest)
@@ -57,9 +54,19 @@ public class FileProcessing {
 	
 	public void select() {
 		chooser.setCurrentDirectory(new java.io.File("."));
-		chooser.setDialogTitle("Select a Matrix File");
+		chooser.setDialogTitle("Select a Disk Request File");
 		chooser.showOpenDialog(null);
 		file = chooser.getSelectedFile();
 	}
+
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary += summary + "\n";
+	}
+	
+	
 
 }

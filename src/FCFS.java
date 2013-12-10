@@ -13,20 +13,20 @@ public class FCFS {
 	}
 	
 	public double doSomething(DiskRequest start ) {
-		int currentPosition = start.track;
+		int current = start.track;
 		double totalTime = 0;
 		
 		 for (int i = 0; i < requests.size(); i++) {
 			 
 			DiskRequest dr = requests.get(i);
-			int distance = dr.track - currentPosition;
+			int distance = dr.track - current;
 			distance = Math.abs(distance);
 			double time = MATH.movetime(distance);
 			totalTime += time;
-			currentPosition = dr.track;
+			current = dr.track;
 			start.track = dr.track;
 			if (verbose == true)
-				System.out.println("Current track: "+currentPosition);
+				System.out.println("Current track: " + current);
 		}
 		 return totalTime;
 	}

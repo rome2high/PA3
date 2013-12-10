@@ -6,10 +6,11 @@ public class SSTF {
 
 	ArrayList<DiskRequest> requests;
 	int startingSector;
+	boolean verbose = false;
 
-	public SSTF(ArrayList<DiskRequest> _requests) {
+	public SSTF(ArrayList<DiskRequest> _requests, boolean _verbose) {
 		requests = _requests;
-		 
+		verbose  = _verbose;		 
 	}
 
 	public DiskRequest findShortest(int current){
@@ -43,6 +44,8 @@ public class SSTF {
 			totalTime +=time;
 			current = dr.track;
 			start.track = dr.track;
+			if (verbose == true)
+				System.out.println("Current track: " + current);
 			//System.out.println("Moving head "+distance+" tracks time spent:"+time);
 		}
 		return totalTime;
