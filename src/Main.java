@@ -1,16 +1,32 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 
 public class Main {
 	
 	FileProcessing fp;
+	JFileChooser chooser = new JFileChooser();
+	InputStreamReader ir = new InputStreamReader(System.in);
+	BufferedReader br =  new BufferedReader(ir);
 	ArrayList<DiskRequest> mySecond = new ArrayList<DiskRequest>();
 	FCFS fcfs;
 	double total = 0;
 	
 	public void myMain() {
 		boolean verbose = false;
-		fp = new FileProcessing("Sample.txt");
+		fp = new FileProcessing();
+		fp.select();	//get file
+		
+		int input = JOptionPane.showConfirmDialog(null, "Do you want to turn ON verbose mode?", "Verbose Mode On?", JOptionPane.YES_OPTION);
+		if (input == 0) {	//verbose yes
+			verbose = true;
+		}
+		
+		//fp = new FileProcessing("Sample.txt");
 		fp.load();
 		
 		
@@ -23,7 +39,6 @@ public class Main {
 			if (verbose == true) 
 				System.out.println("Second:"+i+" total so far:" +total);
 			fcfs = new FCFS(mySecond,verbose);
-		
 			total += fcfs.doSomething(start);
 		}
 		System.out.println("Total FCFS " + total);
@@ -57,5 +72,17 @@ public class Main {
 	public static void main(String args[]) {
 		Main m = new Main();
 		m.myMain();
+	}
+	
+	public String getChar() {
+		String s=null;
+		try {
+			if (br.ready() == true) {
+				s = br.readLine();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}  
+		return s;
 	}
 }
