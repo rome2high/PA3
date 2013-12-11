@@ -1,13 +1,17 @@
+//**********************************************************
+// Assignment: ICS-462-50 PA3 JAVA Disk Scheduling Algorithms Simulation
+// Author: Romeo Mai
+// Honor Code: I pledge that this program represents my own
+//   program code with the inspiration from Michael Dorin's works in designing and debugging my program.
+//*********************************************************
 
 import java.util.ArrayList;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 
 public class SCAN {
 
 	ArrayList<DiskRequest> requests;
-	ArrayList<DiskRequest>larger = new ArrayList<DiskRequest>();
-	ArrayList<DiskRequest>smaller = new ArrayList<DiskRequest>();
+	ArrayList<DiskRequest> larger = new ArrayList<DiskRequest>();
+	ArrayList<DiskRequest> smaller = new ArrayList<DiskRequest>();
 	int startingSector;
 	boolean verbose;
 
@@ -28,16 +32,18 @@ public class SCAN {
 	}
 	
 	public void sort(ArrayList<DiskRequest> list) {
-		ArrayList<DiskRequest>finalList = new ArrayList<DiskRequest>();
-		finalList = list;
-		for (int i=0;i<list.size();i++)
-			for(int x=1;x<list.size()-i;x++) {
-			 if (list.get(x-1).track > list.get(x).track) {
-				DiskRequest temp = list.get(x);
+		for (int i=0;i<list.size();i++)		//outer loop
+		{	
+			for(int x=1;x<list.size()-i;x++) 
+			{
+			 if (list.get(x-1).track > list.get(x).track) 
+			 {
+				DiskRequest temp = list.get(x-1);
 				list.set(x-1, list.get(x));
 				list.set(x,temp);
 			 }
 			}
+		}
 	}
 	
 	public double doSomething(DiskRequest start) {
@@ -67,7 +73,7 @@ public class SCAN {
 		 if (verbose) 
 			 System.out.println("New direction  down:");
 		 
-		 for (int i = smaller.size()-	1; i >0; i--) {
+		 for (int i = smaller.size()-	1; i >= 0; i--) {
 				DiskRequest dr = smaller.get(i);
 				int distance = dr.track - current;
 				distance = Math.abs(distance);

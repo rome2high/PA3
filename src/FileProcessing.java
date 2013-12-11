@@ -1,12 +1,15 @@
+//**********************************************************
+// Assignment: ICS-462-50 PA3 JAVA Disk Scheduling Algorithms Simulation
+// Author: Romeo Mai
+// Honor Code: I pledge that this program represents my own
+//   program code with the inspiration from Michael Dorin's works in designing and debugging my program.
+//*********************************************************
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-
 import javax.swing.JFileChooser;
-
-import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
-
 
 public class FileProcessing {
 	
@@ -45,7 +48,6 @@ public class FileProcessing {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 	
 	public int getTimeLargest() {
@@ -57,6 +59,7 @@ public class FileProcessing {
 		chooser.setDialogTitle("Select a Disk Request File");
 		chooser.showOpenDialog(null);
 		file = chooser.getSelectedFile();
+		setSummary("File Name: " + file.getName());
 	}
 
 	public String getSummary() {
@@ -66,7 +69,4 @@ public class FileProcessing {
 	public void setSummary(String summary) {
 		this.summary += summary + "\n";
 	}
-	
-	
-
 }

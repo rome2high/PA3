@@ -1,6 +1,11 @@
+//**********************************************************
+// Assignment: ICS-462-50 PA3 JAVA Disk Scheduling Algorithms Simulation
+// Author: Romeo Mai
+// Honor Code: I pledge that this program represents my own
+//   program code with the inspiration from Michael Dorin's works in designing and debugging my program.
+//*********************************************************
 
 import java.util.ArrayList;
-
 
 public class SSTF {
 
@@ -46,7 +51,6 @@ public class SSTF {
 			start.track = dr.track;
 			if (verbose == true)
 				System.out.println("Current track: " + current);
-			//System.out.println("Moving head "+distance+" tracks time spent:"+time);
 		}
 		return totalTime;
 	}
