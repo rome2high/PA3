@@ -27,11 +27,18 @@ public class Main {
 		boolean verbose = false;
 		fp = new FileProcessing();
 		fp.select();	//user select file
+		
+		if(fp.getFile() == null){
+			return;
+		}
+		
 		int input = JOptionPane.showConfirmDialog(null, "Turn ON Verbose Mode?", "Verbose Mode Option", JOptionPane.YES_NO_OPTION);
 		if (input == 0) {	//yes = 0; no = 1
 			verbose = true;
 		}
+		
 		fp.load();
+		fp.setSummary("File Name: " + fp.getFile().getName());
 		
 			//handle FCFS
 		DiskRequest start = new DiskRequest("00,0.00");
@@ -78,10 +85,14 @@ public class Main {
 		int g = 0;
 		while (g <= 0){
 			m.myMain();
+			if(fp.getFile() == null){
+				break;
+			}
 			System.out.println(fp.getSummary());
 			JOptionPane.showMessageDialog(null, fp.getSummary(), "Summary Output",JOptionPane.NO_OPTION);
 			g = JOptionPane.showConfirmDialog(null, "Continue Program With Next File?", "Continue Promt", JOptionPane.YES_NO_OPTION);	//return 1 to exit program
 		}
+		System.out.println("Program Terminated!");
 	}
 	
 	public String getChar() {

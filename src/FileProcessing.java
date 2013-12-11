@@ -59,7 +59,6 @@ public class FileProcessing {
 		chooser.setDialogTitle("Select a Disk Request File");
 		chooser.showOpenDialog(null);
 		file = chooser.getSelectedFile();
-		setSummary("File Name: " + file.getName());
 	}
 
 	public String getSummary() {
@@ -68,5 +67,9 @@ public class FileProcessing {
 
 	public void setSummary(String summary) {
 		this.summary += summary + "\n";
+	}
+	
+	public File getFile(){
+		return this.file;
 	}
 }
